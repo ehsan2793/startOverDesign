@@ -6,25 +6,37 @@
 //
 
 import SwiftUI
-
 struct ContentView: View {
     var body: some View {
         ZStack {
-            BottomCardView()
-                .frame(width: 280, height: 220)
-                .background(Color.orange)
+            TitleView()
+                .blur(radius: 20)
+
+            BackCardView()
+                .background(Color("card4"))
                 .shadow(radius: 20)
                 .cornerRadius(20)
                 .offset(x: 0, y: -40)
-            
-            BottomCardView()
-                .frame(width: 300, height: 220)
-                .background(Color.blue)
+                .scaleEffect(0.90)
+                .rotationEffect(Angle(degrees: 10))
+                .rotation3DEffect(Angle(degrees: 5), axis: (x: 10.0, y: 0.0, z: 0))
+                .blendMode(.hardLight)
+
+            BackCardView()
+                .background(Color("card3"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
                 .offset(x: 0, y: -20)
+                .scaleEffect(0.95)
+                .rotationEffect(Angle(degrees: 5))
+                .rotation3DEffect(Angle(degrees: 5), axis: (x: 10.0, y: 0.0, z: 0))
+                .blendMode(.hardLight)
 
             CardView()
+                .blendMode(.hardLight)
+
+            BottomCardView()
+                .blur(radius: 20)
         } //: ZSTACK
     }
 }
@@ -35,9 +47,10 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct BottomCardView: View {
+struct BackCardView: View {
     var body: some View {
         Spacer()
+            .frame(width: 340, height: 220)
     }
 }
 
@@ -57,7 +70,7 @@ struct CardView: View {
                 Image("Logo1")
             } //: HSTACK
             .padding(20)
-            
+
             Image("Card1")
                 .resizable()
                 .scaledToFill()
@@ -67,5 +80,47 @@ struct CardView: View {
         .background(Color.black)
         .cornerRadius(20)
         .shadow(radius: 20)
+    }
+}
+
+struct TitleView: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Certificates")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            .padding()
+
+            Image("Background1")
+
+            Spacer()
+        }
+    }
+}
+
+struct BottomCardView: View {
+    var body: some View {
+        VStack(spacing: 20) {
+            RoundedRectangle(cornerRadius: 3)
+                .frame(width: 40, height: 5)
+                .opacity(0.1)
+            
+            Text("This certificate is proof that Meng To has achieved the UI Design course with approval from a Design+Code instructor.")
+                .multilineTextAlignment(.center)
+                .font(.subheadline)
+                .lineSpacing(4)
+            
+            Spacer()
+        } //: VSTACK
+        .padding(.top, 8)
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(radius: 20)
+        .offset(x: 0, y: 500)
     }
 }
