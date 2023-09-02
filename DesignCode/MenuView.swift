@@ -15,18 +15,40 @@ struct MenuView: View {
     var body: some View {
         VStack {
             Spacer()
-            
-            VStack(alignment: .leading, spacing: 16) {
+
+            VStack(spacing: 16) {
+                Text("Ehsan - 28% Complete")
+                    .font(.caption)
+
+                Color.blue.opacity(0.6)
+                    .frame(width: 38, height: 6)
+                    .cornerRadius(3)
+                    .frame(width: 130, height: 6, alignment: .leading)
+                    .background(Color.black.opacity(0.08))
+                    .cornerRadius(3)
+                    .padding()
+                    .frame(width: 150, height: 24)
+                    .background(Color.black.opacity(0.1))
+                    .cornerRadius(12)
+
                 MenuRow(title: "Account", icon: "gear")
                 MenuRow(title: "Billing", icon: "creditcard")
                 MenuRow(title: "Sighout", icon: "person.crop.circle")
             } //: VSTACK
             .frame(maxWidth: .infinity)
             .frame(height: 300)
-            .background(Color.white)
+            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), Color(#colorLiteral(red: 0.8705882353, green: 0.8941176471, blue: 0.9450980392, alpha: 1))]), startPoint: .top, endPoint: .bottom))
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .shadow(radius: 30)
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .padding(.horizontal, 30)
+            .overlay {
+                Image("Avatar")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .offset(y: -150)
+            }
         } //: VSTACK
         .padding(.bottom, 30)
     }
@@ -41,15 +63,21 @@ struct MenuView_Previews: PreviewProvider {
 }
 
 struct MenuRow: View {
-    let symbleColor: UIColor = #colorLiteral(red: 0.292, green: 0.081, blue: 0.6, alpha: 255)
+    // MARK: - PROPERTIES
+
+    let iconColor = Color(#colorLiteral(red: 0.662745098, green: 0.7333333333, blue: 0.831372549, alpha: 1))
     var title: String
     var icon: String
+
+    // MARK: - BODY
+
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.system(size: 20, weight: .bold))
                 .imageScale(.large)
                 .frame(width: 32, height: 32)
+                .foregroundColor(iconColor)
 
             Text(title)
                 .font(.system(size: 20, weight: .bold, design: .rounded))
