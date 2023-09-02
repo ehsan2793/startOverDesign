@@ -12,6 +12,8 @@ struct ContentView: View {
     @State var show: Bool = false
     @State var viewState: CGSize = .zero
     @State var showCard: Bool = false
+    @State var bottomState: CGSize = .zero
+    @State var showFull: Bool = false
 
     // MARK: - BODY
 
@@ -52,7 +54,7 @@ struct ContentView: View {
             CardView()
                 .frame(width: showCard ? 375 : 340.0, height: 220.0)
                 .background(Color.black)
-                .clipShape(RoundedRectangle(cornerRadius: showCard ? 30 : 20, style: .continuous ))
+                .clipShape(RoundedRectangle(cornerRadius: showCard ? 30 : 20, style: .continuous))
                 .shadow(radius: 20)
                 .offset(x: viewState.width, y: viewState.height)
                 .offset(y: showCard ? -100 : 0)
@@ -67,6 +69,7 @@ struct ContentView: View {
                         .onChanged { value in
                             viewState = value.translation
                             show = true
+                            showCard = false
                         }
                         .onEnded { _ in
                             withAnimation(.spring(response: 0.5, dampingFraction: 0.3, blendDuration: 0)) {
@@ -75,11 +78,41 @@ struct ContentView: View {
                             }
                         }
                 )
-            
+
+            Text("\(bottomState.height)")
+                .offset(y: -370)
+                .fontWeight(.bold)
 
             BottomCardView()
                 .offset(x: 0, y: showCard ? 360 : 1000)
+                .offset(y: bottomState.height)
                 .blur(radius: show ? 20 : 0)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            bottomState = value.translation
+                            if showFull {
+                                bottomState.height += -300
+                            }
+                            if bottomState.height < -300 {
+                                bottomState.height = -300
+                            }
+                        }
+                        .onEnded { _ in
+                            withAnimation(.spring()) {
+                                if bottomState.height > 50 {
+                                    showCard = false
+                                }
+                                if (bottomState.height < -100 && !showFull) || (bottomState.height < -250 && showFull) {
+                                    bottomState.height = -300
+                                    showFull = true
+                                } else {
+                                    showFull = false
+                                    bottomState = .zero
+                                }
+                            }
+                        }
+                )
         } //: ZSTACK
     }
 }
