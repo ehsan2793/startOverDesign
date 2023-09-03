@@ -14,7 +14,6 @@ struct MenuView: View {
 
     var body: some View {
         VStack {
-            
             Spacer()
 
             VStack(spacing: 16) {
