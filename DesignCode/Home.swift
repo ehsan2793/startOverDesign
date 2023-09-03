@@ -89,4 +89,3 @@ struct AvatarView: View {
 }
 
 let screen = UIScreen.main.bounds
-
