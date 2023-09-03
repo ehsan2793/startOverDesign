@@ -82,8 +82,6 @@ struct Home: View {
                             }
                         })
                 )
-            Text("\(viewState.height)")
-                .offset(y: 300)
         } //: ZSTACK
     }
 }
