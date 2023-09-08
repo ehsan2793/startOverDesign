@@ -79,10 +79,6 @@ struct ContentView: View {
                         }
                 )
 
-            Text("\(bottomState.height)")
-                .offset(y: -370)
-                .fontWeight(.bold)
-
             BottomCardView()
                 .offset(x: 0, y: showCard ? 360 : 1000)
                 .offset(y: bottomState.height)
