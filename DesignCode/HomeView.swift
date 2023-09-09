@@ -40,7 +40,7 @@ struct HomeView: View {
                     }
                 )
                 .sheet(isPresented: $showUpdate) {
-                    ContentView()
+                    UpdateList()
                 }
             } //: HSTACK
             .padding(.horizontal)
