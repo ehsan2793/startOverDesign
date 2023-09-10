@@ -178,8 +178,6 @@ struct TitleView: View {
 
 struct BottomCardView: View {
     @Binding var show: Bool
-    var color1 = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-    var color2 = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
     var body: some View {
         VStack(spacing: 20) {
             RoundedRectangle(cornerRadius: 3)
@@ -191,9 +189,8 @@ struct BottomCardView: View {
                 .font(.subheadline)
                 .lineSpacing(4)
             HStack(spacing: 20.0) {
-                RingView(color1: color1, color2: color2, width: 88, height: 88, percent: 79, show: $show)
+                RingView(color1: giveMeColor(), color2: giveMeColor(), width: 88, height: 88, percent: 79, show: $show)
 
-                
                 VStack(alignment: .leading, spacing: 8.0) {
                     Text("SwiftUI Prototype")
                         .fontWeight(.bold)
@@ -206,8 +203,6 @@ struct BottomCardView: View {
                 .background(Color.white)
                 .cornerRadius(20)
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
-                
-                
             }
 
             Spacer()
