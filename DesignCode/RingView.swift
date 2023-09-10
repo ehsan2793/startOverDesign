@@ -15,10 +15,11 @@ struct RingView: View {
     var width: CGFloat = 44
     var height: CGFloat = 44
     var percent: CGFloat = 82
-    
+    @Binding var show: Bool
     var progress: CGFloat {
-        1 -  percent / 100
+        1 - percent / 100
     }
+
     var muliplier: CGFloat {
         width / 44
     }
@@ -30,8 +31,9 @@ struct RingView: View {
             Circle()
                 .stroke(Color.black.opacity(0.1), style: StrokeStyle(lineWidth: 5 * muliplier))
                 .frame(width: width, height: height)
+                
             Circle()
-                .trim(from: progress, to: 1)
+                .trim(from: show ? progress : 1, to: 1)
                 .stroke(
                     LinearGradient(gradient: Gradient(colors: [Color(color1), Color(color2)]), startPoint: .topTrailing, endPoint: .bottomLeading),
                     style: StrokeStyle(lineWidth: 5 * muliplier, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20, 0], dashPhase: 0)
@@ -40,10 +42,12 @@ struct RingView: View {
                 .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
                 .frame(width: width, height: height)
                 .shadow(color: Color(color2).opacity(0.1), radius: 3 * muliplier, x: 0, y: 3 * muliplier)
-
+                
+                
             Text("\(Int(percent))%")
                 .font(.system(size: 14 * muliplier))
                 .fontWeight(.bold)
+            
         }
     }
 }
@@ -52,6 +56,6 @@ struct RingView: View {
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView()
+        RingView(show: .constant(true))
     }
 }
