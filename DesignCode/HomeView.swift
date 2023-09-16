@@ -18,64 +18,78 @@ struct HomeView: View {
     // MARK: - BODY
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Watching")
-                    .modifier(CustomeFontModifier(size: 28))
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Watching")
+                        .modifier(CustomeFontModifier(size: 28))
 
-                Spacer()
+                    Spacer()
 
-                AvatarView(showProfile: $showProfile)
-                Button(
-                    action: {
-                        showUpdate.toggle()
-                    },
-                    label: {
-                        Image(systemName: "bell")
-                            .foregroundColor(Color.black)
-                            .font(.system(size: 16, weight: .medium))
-                            .frame(width: 36, height: 36)
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
-                    }
-                )
-                .sheet(isPresented: $showUpdate) {
-                    UpdateList()
-                }
-            } //: HSTACK
-            .padding(.horizontal)
-            .padding(.top, 30)
-            .padding(.leading, 14)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                WatchRingsView(animate: $animate)
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 30)
-                    .onTapGesture {
-                        showContent.toggle()
-                    }
-            }
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20.0) {
-                    ForEach(sectionData) { data in
-                        GeometryReader { proxy in
-                            SectionView(data: data)
-                                .rotation3DEffect(
-                                    Angle(degrees: Double(proxy.frame(in: .global).minX - 30) / -20),
-                                    axis: (x: 0, y: 10.0, z: 0)
-                                )
+                    AvatarView(showProfile: $showProfile)
+                    Button(
+                        action: {
+                            showUpdate.toggle()
+                        },
+                        label: {
+                            Image(systemName: "bell")
+                                .foregroundColor(Color.black)
+                                .font(.system(size: 16, weight: .medium))
+                                .frame(width: 36, height: 36)
+                                .background(Color.white)
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
                         }
-                        .frame(width: 275, height: 275)
+                    )
+                    .sheet(isPresented: $showUpdate) {
+                        UpdateList()
                     }
                 } //: HSTACK
-                .padding(30)
-                .padding(.bottom, 30)
+                .padding(.horizontal)
+                .padding(.top, 30)
+                .padding(.leading, 14)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    WatchRingsView(animate: $animate)
+                        .padding(.horizontal, 30)
+                        .padding(.bottom, 30)
+                        .onTapGesture {
+                            showContent.toggle()
+                        }
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20.0) {
+                        ForEach(sectionData) { data in
+                            GeometryReader { proxy in
+                                SectionView(data: data)
+                                    .rotation3DEffect(
+                                        Angle(degrees: Double(proxy.frame(in: .global).minX - 30) / -20),
+                                        axis: (x: 0, y: 10.0, z: 0)
+                                    )
+                            }
+                            .frame(width: 275, height: 275)
+                        }
+                    } //: HSTACK
+                    .padding(30)
+                    .padding(.bottom, 30)
+                }
+                .offset(y: -30)
+
+                HStack {
+                    Text("Courses")
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                } //: HSTACK
+                .padding(.leading, 30)
+                .offset(y: -60)
+
+                SectionView(data: sectionData[2], width: screen.width - 60, height: 275)
+                    .offset(y: -60)
+                Spacer()
             }
-            .offset(y: -30)
-            Spacer()
         } //: VSTACK
     }
 }
@@ -90,6 +104,8 @@ struct HomeView_Previews: PreviewProvider {
 
 struct SectionView: View {
     @State var data: Section
+    var width: CGFloat = 275
+    var height: CGFloat = 275
     var body: some View {
         VStack {
             HStack(alignment: .top) {
@@ -112,7 +128,7 @@ struct SectionView: View {
         } //: VSTACK
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .frame(width: 275, height: 275)
+        .frame(width: width, height: height)
         .background(data.color)
         .cornerRadius(30)
         .shadow(color: data.color.opacity(0.3), radius: 20, x: 0, y: 20)
