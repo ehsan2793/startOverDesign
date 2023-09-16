@@ -13,6 +13,7 @@ struct HomeView: View {
     @State var animate = false
     @Binding var showProfile: Bool
     @State var showUpdate = false
+    @Binding var showContent: Bool
 
     // MARK: - BODY
 
@@ -52,6 +53,9 @@ struct HomeView: View {
                 WatchRingsView(animate: $animate)
                     .padding(.horizontal, 30)
                     .padding(.bottom, 30)
+                    .onTapGesture {
+                        showContent.toggle()
+                    }
             }
 
             ScrollView(.horizontal, showsIndicators: false) {
@@ -70,7 +74,7 @@ struct HomeView: View {
                 .padding(30)
                 .padding(.bottom, 30)
             }
-
+            .offset(y: -30)
             Spacer()
         } //: VSTACK
     }
@@ -80,7 +84,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showProfile: .constant(false))
+        HomeView(showProfile: .constant(false), showContent: .constant(false))
     }
 }
 
