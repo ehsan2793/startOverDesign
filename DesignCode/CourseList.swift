@@ -12,6 +12,7 @@ struct CourseList: View {
 
     @State var courses = courseData
     @State var active = false
+    @State var activeIndex = -1
 
     // MARK: - BODY
 
@@ -19,7 +20,7 @@ struct CourseList: View {
         ZStack {
             Color.black.opacity(active ? 0.5 : 0)
                 .edgesIgnoringSafeArea(.all)
-            
+
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30.0) {
                     Text("Courses")
@@ -31,8 +32,17 @@ struct CourseList: View {
 
                     ForEach(courses.indices, id: \.self) { index in
                         GeometryReader { geometry in
-                            CourseView(show: $courses[index].show, active: $active, course: courses[index])
-                                .offset(y: courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                            CourseView(
+                                show: $courses[index].show,
+                                active: $active,
+                                course: courses[index],
+                                index: index,
+                                activeIndex: $activeIndex
+                            )
+                            .offset(y: courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                            .opacity(activeIndex != index && active ? 0 : 1)
+                            .scaleEffect(activeIndex != index && active ? 0.5 : 1)
+                            .offset(x: activeIndex != index && active ? screen.width : 0)
                         }
                         .frame(height: 280)
                         .frame(maxWidth: courses[index].show ? .infinity : screen.width - 60)
@@ -60,6 +70,8 @@ struct CourseView: View {
     @Binding var show: Bool
     @Binding var active: Bool
     var course: Course
+    var index: Int
+    @Binding var activeIndex: Int
 
     // MARK: - BODY
 
@@ -132,6 +144,11 @@ struct CourseView: View {
                 withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
                     show.toggle()
                     active.toggle()
+                    if show {
+                        activeIndex = index
+                    } else {
+                        activeIndex = -1
+                    }
                 }
             }
         } //: ZSTACK
