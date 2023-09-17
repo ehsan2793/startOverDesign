@@ -11,29 +11,38 @@ struct CourseList: View {
     // MARK: - PROPERTIES
 
     @State var courses = courseData
+    @State var active = false
 
     // MARK: - BODY
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 30.0) {
-                Text("Courses")
-                    .font(.largeTitle)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding([.leading, .top], 30)
+        ZStack {
+            Color.black.opacity(active ? 0.5 : 0)
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 30.0) {
+                    Text("Courses")
+                        .font(.largeTitle)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding([.leading, .top], 30)
+                        .blur(radius: active ? 20 : 0)
 
-                ForEach(courses.indices, id: \.self) { index in
-                    GeometryReader { geometry in
-                        CourseView(show: $courses[index].show, course: courses[index])
-                            .offset(y: courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                    ForEach(courses.indices, id: \.self) { index in
+                        GeometryReader { geometry in
+                            CourseView(show: $courses[index].show, active: $active, course: courses[index])
+                                .offset(y: courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                        }
+                        .frame(height: 280)
+                        .frame(maxWidth: courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(courses[index].show ? 1 : 0)
                     }
-                    .frame(height: 280)
-                    .frame(maxWidth: courses[index].show ? .infinity : screen.width - 60)
-                }
-            } //: VSTACK
-        } //: SCROLL
-        .frame(width: screen.width)
+                } //: VSTACK
+            } //: SCROLL
+            .frame(width: screen.width)
+            .statusBarHidden(active ? true : false)
+        } //: ZSTACK
     }
 }
 
@@ -49,6 +58,7 @@ struct CourseView: View {
     // MARK: - PROPERTIES
 
     @Binding var show: Bool
+    @Binding var active: Bool
     var course: Course
 
     // MARK: - BODY
@@ -121,6 +131,7 @@ struct CourseView: View {
 //                withAnimation(Animation.easeInOut(duration: 0.5)) {
                 withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
                     show.toggle()
+                    active.toggle()
                 }
             }
         } //: ZSTACK
