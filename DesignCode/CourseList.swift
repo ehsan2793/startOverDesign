@@ -72,6 +72,7 @@ struct CourseView: View {
     var course: Course
     var index: Int
     @Binding var activeIndex: Int
+    @State var activeView: CGSize = .zero
 
     // MARK: - BODY
 
@@ -139,6 +140,7 @@ struct CourseView: View {
             .background(Color(course.color))
             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)
+
             .onTapGesture {
 //                withAnimation(Animation.easeInOut(duration: 0.5)) {
                 withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
@@ -152,7 +154,32 @@ struct CourseView: View {
                 }
             }
         } //: ZSTACK
+
         .frame(height: show ? screen.height : 280)
+        .scaleEffect(1 - activeView.height / 1000)
+//        .rotation3DEffect(Angle(degrees: activeView.height), axis: (x: 0, y: 10, z: 0)) 
+        .gesture(
+            show ?
+                DragGesture()
+                .onChanged({ value in
+                    withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
+                        activeView = value.translation
+                    }
+                    print("here")
+                })
+                .onEnded({ _ in
+                    print("here 2")
+                    withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
+                        if activeView.height > 50 {
+                            show = false
+                            active = false
+                            activeIndex = -1
+                        }
+                        activeView = .zero
+                    }
+                })
+                : nil
+        )
         .edgesIgnoringSafeArea(.all)
     }
 }
