@@ -153,6 +153,11 @@ struct CourseView: View {
                     }
                 }
             }
+//            if show {
+//                CourseDetail(course: course, show: $show,active: $active, activeIndex: $activeIndex)
+//                    .background(Color.white)
+//                    .animation(nil, value: show)
+//            }
         } //: ZSTACK
 
         .frame(height: show ? screen.height : 280)
