@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0805F22AC9E82F0096D349 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0805F12AC9E82F0096D349 /* Data.swift */; };
+		7C0805F42AC9EB980096D349 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0805F32AC9EB980096D349 /* PostList.swift */; };
 		7C38EB802AC88BF900635C1A /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */; };
 		7C494AE62AAC48450081D19B /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494AE52AAC48450081D19B /* UpdateList.swift */; };
 		7C4BC9992AACC07300E3BCBE /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4BC9982AACC07300E3BCBE /* UpdateDetail.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C0805F12AC9E82F0096D349 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7C0805F32AC9EB980096D349 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
 		7C494AE52AAC48450081D19B /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 		7C4BC9982AACC07300E3BCBE /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				7C4BC99C2AACE78600E3BCBE /* TabBar.swift */,
 				7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */,
 				7C5ACB012AB613AC0096FE36 /* CourseList.swift */,
+				7C0805F12AC9E82F0096D349 /* Data.swift */,
+				7C0805F32AC9EB980096D349 /* PostList.swift */,
 				7C4BC9982AACC07300E3BCBE /* UpdateDetail.swift */,
 				7C494AE52AAC48450081D19B /* UpdateList.swift */,
 				7C4BC99A2AACC42800E3BCBE /* UpdateStore.swift */,
@@ -277,12 +283,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4BC99F2AACF77000E3BCBE /* RingView.swift in Sources */,
+				7C0805F42AC9EB980096D349 /* PostList.swift in Sources */,
 				7C7D3D372AAE35130065B1FE /* Modifiers.swift in Sources */,
 				7C4BC99D2AACE78600E3BCBE /* TabBar.swift in Sources */,
 				7C4BC9992AACC07300E3BCBE /* UpdateDetail.swift in Sources */,
 				7C5ACB022AB613AC0096FE36 /* CourseList.swift in Sources */,
 				7CFB41992A9A1A860029DF8A /* ContentView.swift in Sources */,
 				7CB273E32AA36BF700043517 /* MenuView.swift in Sources */,
+				7C0805F22AC9E82F0096D349 /* Data.swift in Sources */,
 				7C494AE62AAC48450081D19B /* UpdateList.swift in Sources */,
 				7C4BC99B2AACC42800E3BCBE /* UpdateStore.swift in Sources */,
 				7CB273E52AA3AB2800043517 /* Home.swift in Sources */,
