@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CourseList: View {
     // MARK: - PROPERTIES
+    @ObservedObject var store = CourseStore()
+    
 
-    @State var courses = courseData
+//    @State var courses = courseData
     @State var active = false
     @State var activeIndex = -1
 
@@ -20,6 +22,7 @@ struct CourseList: View {
         ZStack {
             Color.black.opacity(active ? 0.5 : 0)
                 .edgesIgnoringSafeArea(.all)
+                
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30.0) {
@@ -30,23 +33,23 @@ struct CourseList: View {
                         .padding([.leading, .top], 30)
                         .blur(radius: active ? 20 : 0)
 
-                    ForEach(courses.indices, id: \.self) { index in
+                    ForEach(store.courses.indices, id: \.self) { index in
                         GeometryReader { geometry in
                             CourseView(
-                                show: $courses[index].show,
+                                show: $store.courses[index].show,
                                 active: $active,
-                                course: courses[index],
+                                course: store.courses[index],
                                 index: index,
                                 activeIndex: $activeIndex
                             )
-                            .offset(y: courses[index].show ? -geometry.frame(in: .global).minY : 0)
+                            .offset(y: store.courses[index].show ? -geometry.frame(in: .global).minY : 0)
                             .opacity(activeIndex != index && active ? 0 : 1)
                             .scaleEffect(activeIndex != index && active ? 0.5 : 1)
                             .offset(x: activeIndex != index && active ? screen.width : 0)
                         }
                         .frame(height: 280)
-                        .frame(maxWidth: courses[index].show ? .infinity : screen.width - 60)
-                        .zIndex(courses[index].show ? 1 : 0)
+                        .frame(maxWidth: store.courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(store.courses[index].show ? 1 : 0)
                     }
                 } //: VSTACK
             } //: SCROLL
