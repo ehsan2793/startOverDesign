@@ -5,6 +5,7 @@
 //  Created by Ehsan Rahimi on 9/30/23.
 //
 
+import SDWebImageSwiftUI
 import SwiftUI
 
 struct CourseDetail: View {
@@ -46,7 +47,7 @@ struct CourseDetail: View {
 
                     Spacer()
 
-                    Image(uiImage: course.image)
+                    WebImage(url: course.image)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
@@ -76,10 +77,9 @@ struct CourseDetail: View {
             }
         } //: SCROOL
         .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/ .all/*@END_MENU_TOKEN@*/)
-        
     }
 }
 
 #Preview {
-    CourseDetail(course: courseData[0], show: .constant(true),active: .constant(true), activeIndex: .constant(-1))
+    CourseDetail(course: courseData[0], show: .constant(true), active: .constant(true), activeIndex: .constant(-1))
 }

@@ -28,18 +28,19 @@ func getArray(id: String, compeltion: @escaping ([Entry]) -> Void) {
 
 class CourseStore: ObservableObject {
     @Published var courses: [Course] = courseData
-    var image = #imageLiteral(resourceName: "Background1")
+    var colors = [#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)]
+//    var image =
     var logo = #imageLiteral(resourceName: "Logo1")
-    var color = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+//    var color = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
     init() {
         getArray(id: "course") { items in
             items.forEach { item in
                 self.courses.append(Course(
                     title: item.fields["title"] as! String,
                     subtitle: item.fields["subtitle"] as! String,
-                    image: self.image,
+                    image: item.fields.linkedAsset(at: "image")?.url ?? URL(string: "")!,
                     logo: self.logo,
-                    color: self.color,
+                    color: self.colors.randomElement()!,
                     show: false))
             }
         }

@@ -7,7 +7,7 @@
 
 import Combine
 import SwiftUI
-
+ 
 class DataStore: ObservableObject {
     @Published var posts: [Post] = []
 

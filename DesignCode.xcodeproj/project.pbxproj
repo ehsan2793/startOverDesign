@@ -10,6 +10,8 @@
 		7C0805F22AC9E82F0096D349 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0805F12AC9E82F0096D349 /* Data.swift */; };
 		7C0805F42AC9EB980096D349 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0805F32AC9EB980096D349 /* PostList.swift */; };
 		7C38EB802AC88BF900635C1A /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */; };
+		7C3F3A042AD25E3100EDD0F9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7C3F3A032AD25E3100EDD0F9 /* SDWebImageSwiftUI */; };
+		7C3F3A062AD32C6300EDD0F9 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F3A052AD32C6300EDD0F9 /* BlurView.swift */; };
 		7C494AE62AAC48450081D19B /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494AE52AAC48450081D19B /* UpdateList.swift */; };
 		7C4BC9992AACC07300E3BCBE /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4BC9982AACC07300E3BCBE /* UpdateDetail.swift */; };
 		7C4BC99B2AACC42800E3BCBE /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4BC99A2AACC42800E3BCBE /* UpdateStore.swift */; };
@@ -55,6 +57,7 @@
 		7C0805F12AC9E82F0096D349 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7C0805F32AC9EB980096D349 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
+		7C3F3A052AD32C6300EDD0F9 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		7C494AE52AAC48450081D19B /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 		7C4BC9982AACC07300E3BCBE /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
 		7C4BC99A2AACC42800E3BCBE /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C3F3A042AD25E3100EDD0F9 /* SDWebImageSwiftUI in Frameworks */,
 				7CE8E60F2ACB93820062C6AF /* Contentful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +176,7 @@
 				7CB273E42AA3AB2800043517 /* Home.swift */,
 				7CB273E62AA435F500043517 /* HomeView.swift */,
 				7C7D3D362AAE35130065B1FE /* Modifiers.swift */,
+				7C3F3A052AD32C6300EDD0F9 /* BlurView.swift */,
 				7C4BC99C2AACE78600E3BCBE /* TabBar.swift */,
 				7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */,
 				7C5ACB012AB613AC0096FE36 /* CourseList.swift */,
@@ -216,6 +221,7 @@
 			name = DesignCode;
 			packageProductDependencies = (
 				7CE8E60E2ACB93820062C6AF /* Contentful */,
+				7C3F3A032AD25E3100EDD0F9 /* SDWebImageSwiftUI */,
 			);
 			productName = DesignCode;
 			productReference = 7CFB41932A9A1A860029DF8A /* DesignCode.app */;
@@ -247,6 +253,7 @@
 			mainGroup = 7CFB418A2A9A1A860029DF8A;
 			packageReferences = (
 				7CE8E60D2ACB93820062C6AF /* XCRemoteSwiftPackageReference "contentful.swift" */,
+				7C3F3A022AD25E3100EDD0F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 7CFB41942A9A1A860029DF8A /* Products */;
 			projectDirPath = "";
@@ -301,6 +308,7 @@
 				7CFAD6F12ACB2AF300663704 /* DataStore.swift in Sources */,
 				7C0805F42AC9EB980096D349 /* PostList.swift in Sources */,
 				7C7D3D372AAE35130065B1FE /* Modifiers.swift in Sources */,
+				7C3F3A062AD32C6300EDD0F9 /* BlurView.swift in Sources */,
 				7C4BC99D2AACE78600E3BCBE /* TabBar.swift in Sources */,
 				7C4BC9992AACC07300E3BCBE /* UpdateDetail.swift in Sources */,
 				7C5ACB022AB613AC0096FE36 /* CourseList.swift in Sources */,
@@ -521,6 +529,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7C3F3A022AD25E3100EDD0F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.3;
+			};
+		};
 		7CE8E60D2ACB93820062C6AF /* XCRemoteSwiftPackageReference "contentful.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:contentful/contentful.swift.git";
@@ -532,6 +548,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7C3F3A032AD25E3100EDD0F9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C3F3A022AD25E3100EDD0F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		7CE8E60E2ACB93820062C6AF /* Contentful */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7CE8E60D2ACB93820062C6AF /* XCRemoteSwiftPackageReference "contentful.swift" */;
