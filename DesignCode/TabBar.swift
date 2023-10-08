@@ -18,9 +18,9 @@ struct TabBar: View {
                 .tabItem {
                     TabLabel(imageName: "play.circle.fill", label: "Home")
                 }
-            ContentView()
+            CourseList()
                 .tabItem {
-                    TabLabel(imageName: "rectangle.stack.fill", label: "Certificate")
+                    TabLabel(imageName: "rectangle.stack.fill", label: "Courses")
                 }
         }
         .edgesIgnoringSafeArea(.top)

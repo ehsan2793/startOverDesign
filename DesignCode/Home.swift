@@ -13,24 +13,24 @@ struct Home: View {
     @State var showProfile = false
     @State var showContent = false
     @State var viewState: CGSize = .zero
-    var backgroundColor = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+
 
     // MARK: - BODY
 
     var body: some View {
         ZStack {
-            backgroundColor
+            Color("background2")
                 .edgesIgnoringSafeArea(.all)
 
             HomeView(showProfile: $showProfile, showContent: $showContent)
                 .padding(.top, 44)
                 .background(
                     VStack {
-                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color.white]), startPoint: .top, endPoint: .bottom)
+                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color("background1")]), startPoint: .top, endPoint: .bottom)
                             .frame(height: 200)
                         Spacer()
                     }
-                    .background(Color.white)
+                    .background(Color("background2"))
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
@@ -68,7 +68,7 @@ struct Home: View {
                         })
                 )
             if showContent {
-                Color.white.edgesIgnoringSafeArea(.all)
+                BlurView(style: .systemMaterial).edgesIgnoringSafeArea(.all)
 
                 ContentView()
 

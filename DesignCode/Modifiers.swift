@@ -21,7 +21,6 @@ struct FontModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(style, design: .rounded))
-            .foregroundColor(.black)
     }
 }
 
