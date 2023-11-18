@@ -17,6 +17,8 @@ struct Buttons: View {
             RectangleButton()
 
             CircleButton()
+
+            PayButton()
         } //: VSTACK
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(color2)
@@ -134,6 +136,74 @@ struct CircleButton: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         tap = false
                     }
+                }
+                .onEnded { _ in
+                    press.toggle()
+                }
+        )
+        .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0), value: tap)
+        .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0), value: press)
+    }
+}
+
+struct PayButton: View {
+    let color1 = Color(#colorLiteral(red: 0.7608050108, green: 0.8164883852, blue: 0.9259157777, alpha: 1))
+    let color2 = Color(#colorLiteral(red: 0.8980392157, green: 0.9333333333, blue: 1, alpha: 1))
+    @GestureState var tap = false
+    @State var press: Bool = false
+    var body: some View {
+        ZStack {
+            Image("fingerprint")
+                .opacity(press ? 0 : 1)
+                .scaleEffect(press ? 0 : 1)
+            Image("fingerprint-2")
+                .clipShape(Rectangle().offset(y: tap ? 0 : 50))
+
+                .animation(.easeInOut, value: tap)
+                .opacity(press ? 0 : 1)
+                .scaleEffect(press ? 0 : 1)
+
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 44, weight: .light))
+                .foregroundStyle(Color.purple)
+                .opacity(press ? 1 : 0)
+                .scaleEffect(press ? 1 : 0)
+        }
+        .frame(width: 120, height: 120)
+        .background(
+            ZStack {
+                Circle()
+                    .shadow(color: Color(#colorLiteral(red: 0.7256438732, green: 0.7787529826, blue: 0.8831245303, alpha: 1)), radius: press ? 10 : 3, x: press ? 5 : -5, y: press ? 5 : -5)
+                Circle()
+                    .shadow(color: Color(red: 1.0, green: 1.0, blue: 1.0), radius: 3, x: press ? -3 : 3, y: press ? -3 : 3)
+                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.9019607843, green: 0.9294117647, blue: 0.9882352941, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), Color(press ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9019607843, green: 0.9294117647, blue: 0.9882352941, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            }
+        )
+
+        .clipShape(Circle())
+        .overlay {
+            Circle()
+                .trim(from: tap ? 0.001 : 1, to: 1)
+                .stroke(Color.blue, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                .frame(width: 88, height: 88)
+                .rotationEffect(Angle(degrees: 90))
+                .rotation3DEffect(
+                    Angle(degrees: 180),
+                    axis: (x: 1.0, y: 0.0, z: 0.0),
+                    anchor: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/,
+                    anchorZ: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/,
+                    perspective: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/
+                )
+                .animation(.easeInOut, value: tap)
+        }
+        .shadow(color: press ? Color(#colorLiteral(red: 0.7450980392, green: 0.8, blue: 0.8980392157, alpha: 1)) : Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), radius: 20, x: -20, y: -20)
+        .shadow(color: press ? Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) : Color(#colorLiteral(red: 0.7294117647, green: 0.7843137255, blue: 0.8941176471, alpha: 1)), radius: 20, x: 20, y: 20)
+        .scaleEffect(tap ? 1.2 : 1)
+        .gesture(
+            LongPressGesture(minimumDuration: 0.5)
+
+                .updating($tap) { currState, gestureState, _ in
+                    gestureState = currState
                 }
                 .onEnded { _ in
                     press.toggle()
