@@ -44,6 +44,7 @@
 		7CB273E32AA36BF700043517 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB273E22AA36BF700043517 /* MenuView.swift */; };
 		7CB273E52AA3AB2800043517 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB273E42AA3AB2800043517 /* Home.swift */; };
 		7CB273E72AA435F500043517 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB273E62AA435F500043517 /* HomeView.swift */; };
+		7CD976832B130D3D008016EC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD976822B130D3D008016EC /* LoginView.swift */; };
 		7CE8E60F2ACB93820062C6AF /* Contentful in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE8E60E2ACB93820062C6AF /* Contentful */; };
 		7CE8E6132ACB9EF00062C6AF /* CourseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE8E6122ACB9EF00062C6AF /* CourseStore.swift */; };
 		7CF06F3E2ADB2D9000552176 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF06F3D2ADB2D9000552176 /* Buttons.swift */; };
@@ -92,6 +93,7 @@
 		7CB273E22AA36BF700043517 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7CB273E42AA3AB2800043517 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7CB273E62AA435F500043517 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7CD976822B130D3D008016EC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7CE8E6122ACB9EF00062C6AF /* CourseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseStore.swift; sourceTree = "<group>"; };
 		7CF06F3D2ADB2D9000552176 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		7CFAD6F02ACB2AF300663704 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				7C7D3D362AAE35130065B1FE /* Modifiers.swift */,
 				7C3F3A052AD32C6300EDD0F9 /* BlurView.swift */,
 				7C4BC99C2AACE78600E3BCBE /* TabBar.swift */,
+				7CD976822B130D3D008016EC /* LoginView.swift */,
 				7C38EB7F2AC88BF900635C1A /* CourseDetail.swift */,
 				7C5ACB012AB613AC0096FE36 /* CourseList.swift */,
 				7C0805F12AC9E82F0096D349 /* Data.swift */,
@@ -324,6 +327,7 @@
 				7C38EB802AC88BF900635C1A /* CourseDetail.swift in Sources */,
 				7CF06F3E2ADB2D9000552176 /* Buttons.swift in Sources */,
 				7CB273E72AA435F500043517 /* HomeView.swift in Sources */,
+				7CD976832B130D3D008016EC /* LoginView.swift in Sources */,
 				7CFB41972A9A1A860029DF8A /* DesignCodeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

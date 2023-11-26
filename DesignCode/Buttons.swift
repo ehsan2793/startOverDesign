@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+func haptic() {
+    UINotificationFeedbackGenerator().notificationOccurred(.success)
+}
+
 struct Buttons: View {
     let color1 = Color(#colorLiteral(red: 0.7608050108, green: 0.8164883852, blue: 0.9259157777, alpha: 1))
     let color2 = Color(#colorLiteral(red: 0.8980392157, green: 0.9333333333, blue: 1, alpha: 1))
@@ -77,6 +81,7 @@ struct RectangleButton: View {
                 LongPressGesture(minimumDuration: 0.5)
                     .onChanged { _ in
                         tap = true
+                        haptic()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             tap = false
                         }
